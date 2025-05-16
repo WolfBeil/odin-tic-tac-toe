@@ -32,7 +32,30 @@ function gameboard() {
         }
     }
 
-    return {getBoard, updateCell};
+    const checkWin = function() {
+        for (const row of board) {
+            if (row[0] === row[1] && row[0] === row[2] && row[0] !== '') {
+                console.log(`Player ${row[0]} wins!`);
+                return true;
+            }
+        }
+        for (let i = 0; i < board.length; i++) {
+            if (board[0][i] === board[1][i] && board[0][i] === board[2][i] && board[0][i] !== '') {
+                console.log(`Player ${board[0][i]} wins!`);
+                return true;
+            }
+        }
+        if (board[0][0] === board[1][1] && board[0][0] === board[2][2] && board[0][0] !== '') {
+            console.log(`Player ${board[0][0]} wins!`);
+            return true;
+        }
+        if (board[2][0] === board[1][1] && board[2][0] === board[0][2] && board[2][0] !== '') {
+            console.log(`Player ${board[2][0]} wins!`);
+            return true;
+        }
+    }
+
+    return {getBoard, updateCell, checkWin};
 }
 
 function playerController() {

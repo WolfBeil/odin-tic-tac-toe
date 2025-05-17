@@ -103,8 +103,14 @@ function ticTac() {
             if (game.checkWin()) {
                 return true;
             } else {
-                player.turnChange();
-                return false;
+                const draw = game.checkDraw();
+                if (draw) {
+                    console.log(`It's a draw!`);
+                    return true;
+                } else {
+                    player.turnChange();
+                    return false;
+                }
             }
         } else {
             console.log(`Invalid move. Please try again`);

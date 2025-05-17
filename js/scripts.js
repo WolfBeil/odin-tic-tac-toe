@@ -36,6 +36,7 @@ function ticTac() {
         }
     
         const checkWin = function() {
+
             for (const row of board) {
                 if (row[0] === row[1] && row[0] === row[2] && row[0] !== '') {
                     console.log(`Player ${row[0]} wins!`);
@@ -57,8 +58,22 @@ function ticTac() {
                 return true;
             }
         }
+
+        const checkDraw = function(board) {
+            if (!checkWin()) {
+                for (const row of board) {
+                    for (const cell of row) {
+                        if (cell === '') {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
     
-        return {getBoard, updateCell, checkWin};
+        return {getBoard, updateCell, checkWin, checkDraw};
     }
     
     function playerController() {

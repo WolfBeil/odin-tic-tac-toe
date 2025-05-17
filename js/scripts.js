@@ -77,13 +77,33 @@ function ticTac() {
     
         return {turnChange, getCurrentPlayer};
     }
-    
-    function makeMove(row, col) {
-        const playerSymbol = getCurrentPlayer();
-    }
 
     const game = gameboard();
     const player = playerController();
 
+    function makeMove(row, col) {
+        const playerSymbol = player.getCurrentPlayer();
+        const move = game.updateCell(row, col, playerSymbol);
+        if (move) {
+            if (game.checkWin()) {
+                return true;
+            } else {
+                player.turnChange();
+                return false;
+            }
+        } else {
+            console.log(`Invalid move. Please try again`);
+            return false;
+        }
+    }
+
+    let gameOver = false;
+
+
+
+    return {makeMove, getBoard: game.getBoard};
+
 }
+
+const gameInstance = ticTac();
 

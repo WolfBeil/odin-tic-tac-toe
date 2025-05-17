@@ -59,7 +59,7 @@ function ticTac() {
             }
         }
 
-        const checkDraw = function(board) {
+        const checkDraw = function() {
             if (!checkWin()) {
                 for (const row of board) {
                     for (const cell of row) {
@@ -120,7 +120,18 @@ function ticTac() {
 
     let gameOver = false;
 
+    while (!gameOver) {
+        const currentPlayerSymbol = player.getCurrentPlayer();
+        console.log(`It's ${currentPlayerSymbol}'s turn!`);
 
+        const finishingMove = makeMove(row, col);
+
+        if (finishingMove) {
+            gameOver = true;
+            console.log('Game Over!');
+        }
+        console.log(game.getBoard());
+    }
 
     return {makeMove, getBoard: game.getBoard};
 

@@ -118,21 +118,6 @@ function ticTac() {
         }
     }
 
-    let gameOver = false;
-
-    while (!gameOver) {
-        const currentPlayerSymbol = player.getCurrentPlayer();
-        console.log(`It's ${currentPlayerSymbol}'s turn!`);
-
-        const finishingMove = makeMove(row, col);
-
-        if (finishingMove) {
-            gameOver = true;
-            console.log('Game Over!');
-        }
-        console.log(game.getBoard());
-    }
-
     return {makeMove, getBoard: game.getBoard};
 
 }

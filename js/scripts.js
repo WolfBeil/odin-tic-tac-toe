@@ -1,3 +1,46 @@
+const gameboard = (() => {
+
+    const board = ['', '', '', '', '', '', '', '', ''];
+    
+    const getBoard = () => [...board];
+    const updateCell = (index, player) => {
+        if (index > 8 || index < 0) {
+            console.log('Invalid Move.')
+            return false;
+        } else {
+            if (board[index] !== '') {
+                console.log('This cell is not empty.')
+                return false;
+            } else {
+                board[index] = player;
+                return true;
+            }
+        }
+    };
+    const resetBoard = () => board.fill('');
+    const checkWin = (player) => {};
+    const checkDraw = () => board.every(cell => cell !== '');
+    
+    return {getBoard, updateCell, resetBoard, checkWin, checkDraw};
+})();
+
+const playerController = (() => {
+    
+    let currentPlayer = 'X';
+
+    const turnChange = () => {
+        if (currentPlayer === 'X') {
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X';
+        }
+    }
+
+    const getPlayer = () => currentPlayer;
+
+    return {turnChange, getPlayer}
+})();
+
 function ticTac() {
 
     function gameboard() {
@@ -117,9 +160,8 @@ function ticTac() {
             return false;
         }
     }
-
+    
     return {makeMove, getBoard: game.getBoard};
-
 }
 
 const gameInstance = ticTac();

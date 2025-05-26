@@ -17,28 +17,50 @@ const gameboard = (() => {
             }
         }
     };
+
     const resetBoard = () => board.fill('');
-    const checkWin = (player) => {};
+
+    const checkWin = (player) => {
+        const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6],
+        ]
+
+        for (const condition of winConditions) {
+            const [a, b, c] = condition;
+            if (board[a] === player && board[b] === player && board[c] === player) {
+                return true;
+            }
+        }
+        return false;
+    };
+
     const checkDraw = () => board.every(cell => cell !== '');
     
     return {getBoard, updateCell, resetBoard, checkWin, checkDraw};
 })();
 
 const playerController = (() => {
+
+    const players = [
+        {name: 'Player 1', symbol: 'X'},
+        {name: 'Player 2', symbol: 'O'}
+    ];
     
-    let currentPlayer = 'X';
+    let currentPlayerIndex = 0;
 
     const turnChange = () => {
-        if (currentPlayer === 'X') {
-            currentPlayer = 'O'
-        } else {
-            currentPlayer = 'X';
-        }
-    }
+        currentPlayerIndex = 1 - currentPlayerIndex;
+    };
 
-    const getPlayer = () => currentPlayer;
+    const resetPlayerIndex = () => currentPlayerIndex = 0;
 
-    return {turnChange, getPlayer}
+    const getPlayer = () => players[currentPlayerIndex];
+
+    return {turnChange, resetPlayerIndex, getPlayer};
+})();
+
+const gameController = (() => {
+    
 })();
 
 function ticTac() {

@@ -79,7 +79,7 @@ const gameController = (() => {
         if (move) {
             if (board.checkWin(currentPlayer.symbol)) {
                 activeGame = false;
-                console.log(`${currentPlayer.getPlayer().symbol} wins!`);
+                console.log(`${currentPlayer.symbol} wins!`);
                 return;
             }
 

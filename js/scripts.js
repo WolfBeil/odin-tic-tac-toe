@@ -61,8 +61,8 @@ const playerController = (() => {
 
 const gameController = (() => {
 
-    const player = playerController();
-    const board = gameboard();
+    const player = playerController;
+    const board = gameboard;
 
     let activeGame = true;
 

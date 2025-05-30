@@ -112,20 +112,16 @@ const gameController = (() => {
 const displayController = (() => {
 
     const grid = document.querySelector(".grid");
-    const cellsArray = document.querySelectorAll('.grid > div');
-    const restartBtn = document.querySelector('.restart-btn');
-    const playerTurnName = document.querySelector('.player-turn');
 
     // For Loop for creating the divs of the grid
-    
+
     for (let index = 0; index < gameboard.getBoard().length; index++) {
         const cell = document.createElement('div');
         grid.appendChild(cell);
     };
 
-    function displayTurnChange() {
-        playerTurnName.textContent = `${gameController.getCurrentPlayer().symbol}`;
-    }
+
+    const cellsArray = document.querySelectorAll('.grid > div');
 
     cellsArray.forEach((cell, index) => {
         cell.addEventListener('click', () => {
@@ -138,6 +134,12 @@ const displayController = (() => {
         });
     });
 
+    const playerTurnName = document.querySelector('.player-turn');
+
+    function displayTurnChange() {
+        playerTurnName.textContent = `${gameController.getCurrentPlayer().symbol}`;
+    }
+
     function handleCellClick(index) {
         console.log(`Cell with index ${index} was clicked!`);
         const currentPlayer = playerController.getPlayer();
@@ -147,6 +149,8 @@ const displayController = (() => {
 
         cellsArray[index].textContent = currentSymbol;
     }    
+
+    const restartBtn = document.querySelector('.restart-btn');
 
     restartBtn.addEventListener('click', () => {
         cellsArray.forEach(cell => {

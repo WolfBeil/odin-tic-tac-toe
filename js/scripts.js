@@ -139,6 +139,16 @@ const displayController = (() => {
         playerTurnName.textContent = `${gameController.getCurrentPlayer().symbol}`;
     }
 
+    const winnerDisplay = document.querySelector('.winner-div > span');
+
+    function displayWinner() {
+        if (!gameController.isGameActive()) {
+            winnerDisplay.textContent = `Player ${playerController.getPlayer().symbol} wins!`;
+        }
+    }
+
+    const resetWinner = () => {winnerDisplay.textContent = ''};
+
     function handleCellClick(index) {
         if (gameController.isGameActive()) {
             console.log(`Cell with index ${index} was clicked!`);
@@ -148,6 +158,8 @@ const displayController = (() => {
             gameController.playRound(index);
 
             cellsArray[index].textContent = currentSymbol;
+
+            displayWinner();
         } else {
             return;
         }
@@ -161,7 +173,10 @@ const displayController = (() => {
         })
         gameController.startGame();
         displayTurnChange();
+        resetWinner();
     });
+
+    return {displayWinner}
 
 })();
 

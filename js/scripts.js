@@ -142,7 +142,9 @@ const displayController = (() => {
     const winnerDisplay = document.querySelector('.winner-div > span');
 
     function displayWinner() {
-        if (!gameController.isGameActive()) {
+        if (gameboard.checkDraw()) {
+            winnerDisplay.textContent = `It's a draw! Nobody wins`
+        } else {
             winnerDisplay.textContent = `Player ${playerController.getPlayer().symbol} wins!`;
         }
     }
@@ -159,7 +161,9 @@ const displayController = (() => {
 
             cellsArray[index].textContent = currentSymbol;
 
-            displayWinner();
+            if (!gameController.isGameActive()) {
+                displayWinner();
+            }
         } else {
             return;
         }

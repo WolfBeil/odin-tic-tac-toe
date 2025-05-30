@@ -48,3 +48,10 @@ header {
     font-weight: bolder;
     font-size: 4rem;
 }
+
+.restart-btn {
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 10px;
+}

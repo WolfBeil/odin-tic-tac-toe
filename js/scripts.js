@@ -120,7 +120,6 @@ const displayController = (() => {
         grid.appendChild(cell);
     };
 
-
     const cellsArray = document.querySelectorAll('.grid > div');
 
     cellsArray.forEach((cell, index) => {
@@ -141,13 +140,17 @@ const displayController = (() => {
     }
 
     function handleCellClick(index) {
-        console.log(`Cell with index ${index} was clicked!`);
-        const currentPlayer = playerController.getPlayer();
-        const currentSymbol = currentPlayer.symbol;
+        if (gameController.isGameActive()) {
+            console.log(`Cell with index ${index} was clicked!`);
+            const currentPlayer = playerController.getPlayer();
+            const currentSymbol = currentPlayer.symbol;
 
-        gameController.playRound(index);
+            gameController.playRound(index);
 
-        cellsArray[index].textContent = currentSymbol;
+            cellsArray[index].textContent = currentSymbol;
+        } else {
+            return;
+        }
     }    
 
     const restartBtn = document.querySelector('.restart-btn');
